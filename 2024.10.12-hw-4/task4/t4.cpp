@@ -2,36 +2,29 @@
 #include <algorithm>
 
 
-// дорешать, умирает на 6 тесте
 int main(int argc, char* argv[])
 {
 	int n;
 	scanf_s("%d", &n);
-
 	int massiv[10000] = { 0 };
-
-	/*int answer = 0;
-	int indexx = 0;*/
-
 	int prom = 0;
-	//int minn = 1000;
-	int maxx = 0;
-
-
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; ++i)
 	{
 		scanf_s("%d", &prom);
 		massiv[i] = prom;
-		/*minn = std::min(minn, prom);
-		maxx = std::max(maxx, prom);*/
 	}
-
-	for (int i = 0; i < n - 2; i++)
+	int max_berry = massiv[0] + massiv[1] + massiv[2];
+	int tipo_max_berry = max_berry;
+	for (int i = 2; i < (n - 1); ++i)
 	{
-		maxx = std::max(massiv[i] + massiv[i + 1] + massiv[i + 2], maxx);
+		tipo_max_berry = tipo_max_berry - massiv[i - 2] + massiv[i + 1];
+			if (max_berry < tipo_max_berry)
+			{
+				max_berry = tipo_max_berry;
+			}
 	}
 
-	printf("%d", maxx);
+	printf("%d", max_berry);
 
 	return EXIT_SUCCESS;
 }
